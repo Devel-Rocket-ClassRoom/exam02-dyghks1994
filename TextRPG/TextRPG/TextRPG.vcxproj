@@ -126,23 +126,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MazeMap.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="TextRPG.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="MazeMap.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="SingletonBase.h" />
+    <ClInclude Include="TextRPG.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,2 +1,10 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "Actor.h"
+
+Actor::Actor()
+{
+}
+
+Actor::~Actor()
+{
+}

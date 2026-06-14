@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 #include "Utils.h"
 
@@ -14,5 +14,5 @@ float GetRandom()
 
 int GetRandomRange(int Min, int Max)
 {
-    return Min + rand() % (Max - Min + 1);  // Min ~ Max(양끝 포함)
+    return Min + rand() % (Max - Min + 1);  // Min ~ Max(?묐걹 ?ы븿)
 }
