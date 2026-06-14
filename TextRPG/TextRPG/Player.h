@@ -7,6 +7,12 @@ public:
 	Player();
 	virtual ~Player();
 
+
+	virtual void Initialize() override;
+	virtual int ApplyDamage(Actor& InActor) override;
+	virtual int TakeDamage(int Damage) override;
+
+
 private:
 
 

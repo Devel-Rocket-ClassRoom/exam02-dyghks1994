@@ -68,6 +68,11 @@ void MazeMap::PrintMap(Actor& InPlayer)
     }
 }
 
+MazeTile MazeMap::GetMazeData(int x, int y)
+{
+    return static_cast<MazeTile>(Map[y][x]);
+}
+
 int MazeMap::GetAvailableMoves(Actor& InPlayer)
 {
     int Flags = DirNone;

@@ -133,6 +133,7 @@
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Slime.cpp" />
     <ClCompile Include="TextRPG.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="SingletonBase.h" />
+    <ClInclude Include="Slime.h" />
     <ClInclude Include="TextRPG.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

@@ -6,7 +6,10 @@ TextRPG::TextRPG()
 	: Menu(GameMenu::NONE)
 	, GameMap(nullptr)
 {
-	GameMap = new MazeMap();
+	if (GameMap == nullptr)
+	{
+		GameMap = new MazeMap();
+	}
 }
 
 TextRPG::~TextRPG()
@@ -81,9 +84,9 @@ GameMenu TextRPG::SelectMenu()
 
 void TextRPG::MainGameLogic()
 {
-	// 플레이어
+	// 플레이어 초기 세팅
 	Player MyPlayer;
-	Position StartPos = { 1, 1 };
+	Position StartPos = { 1, 1 };	// 시작 위치
 	MyPlayer.SetPosition(StartPos);
 
 	// 메인 루프
@@ -124,6 +127,36 @@ void TextRPG::MainGameLogic()
 
 		// 이동할 좌표를 실제 플레이어 좌표로 세팅
 		MyPlayer.SetPosition(Pos);
+
+
+		/// 이벤트 처리
+		// 현재 위치에 있는 값 확인
+		Position CurPos = MyPlayer.GetPosition();
+		int Target = GameMap->GetMazeData(CurPos.X, CurPos.Y);
+		
+		switch (Target)
+		{
+			// 몬스터 전투
+			case MazeTile::Maze_Mon_Sime:
+			{
+
+				break;
+			}
+
+			//case MazeTile::MazeWall:
+			//{
+			//	break;
+			//}
+			//
+			//case MazeTile::MazeWall:
+			//{
+			//	break;
+			//}
+			
+			
+			// 상점 진입
+		}
+
 	}
 	
 

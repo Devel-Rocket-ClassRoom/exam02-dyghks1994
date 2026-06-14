@@ -2,10 +2,13 @@
 
 enum MazeTile
 {
-	MazePath = 0,
-	MazeWall = 1,
-	MazeStart = 2,
-	MazeEnd = 3
+	MazePath			= 0,
+	MazeWall			= 1,
+	MazeStart			= 2,
+	MazeEnd				= 3,
+	Maze_Mon_Sime		= 4,
+	Maze_Mon_Orc		= 5,
+	Maze_Mon_Skeleton	= 6
 };
 
 // MazeTile 표시용
@@ -35,6 +38,7 @@ public:
 	void Release();
 
 	void PrintMap(Actor& InPlayer);
+	MazeTile GetMazeData(int x, int y);
 	int GetAvailableMoves(Actor& InPlayer);
 
 	bool IsWall(const int x, const int y);
