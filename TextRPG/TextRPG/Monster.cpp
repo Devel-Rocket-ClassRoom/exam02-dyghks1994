@@ -2,6 +2,8 @@
 #include "Monster.h"
 
 Monster::Monster()
+	: Exp(0)
+	, Reward(0)
 {
 }
 
@@ -13,12 +15,24 @@ void Monster::Initialize()
 {
 }
 
-int Monster::ApplyDamage(Actor& InActor)
+void Monster::Release()
 {
-	return 0;
 }
 
-int Monster::TakeDamage(int Damage)
+void Monster::PrintInfo() const
+{
+	printf("[%s] \n", Name.c_str());
+}
+
+void Monster::Attack(Actor& InTarget)
+{
+}
+
+void Monster::Skill(Actor& InTarget)
+{
+}
+
+int Monster::ApplyDamage(Actor& InActor)
 {
 	return 0;
 }

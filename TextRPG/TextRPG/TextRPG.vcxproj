@@ -133,17 +133,21 @@
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Potion.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="TextRPG.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="MazeMap.h" />
+    <ClInclude Include="MenuInfo.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="Potion.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="TextRPG.h" />

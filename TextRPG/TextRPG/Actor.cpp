@@ -2,17 +2,36 @@
 #include "Actor.h"
 
 Actor::Actor()
+	: Health(0)
+	, HealthMax(0)
+	, AttackPowerMin(0)
+	, AttackPowerMax(0)
+	, CriticalRate(0.0f)
+	, CriticalStrikeMultiplier(0.0f)
 {
+	Initialize();
 }
 
 Actor::~Actor()
 {
+	Release();
 }
 
 void Actor::Initialize()
 {
 
 }
+
+void Actor::Release()
+{
+
+}
+
+void Actor::PrintInfo() const
+{
+}
+
+
 
 int Actor::ApplyDamage(Actor& InActor)
 {
@@ -21,5 +40,13 @@ int Actor::ApplyDamage(Actor& InActor)
 
 int Actor::TakeDamage(int Damage)
 {
-	return 0;
+	int ResultDmage = Damage;
+
+	Health -= ResultDmage;
+	if (Health < 0)
+	{
+		Health = 0;
+	}
+
+	return ResultDmage;
 }

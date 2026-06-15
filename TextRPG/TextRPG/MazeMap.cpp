@@ -4,10 +4,12 @@
 
 MazeMap::MazeMap()
 {
+    Initialize();
 }
 
 MazeMap::~MazeMap()
 {
+    Release();
 }
 
 void MazeMap::Initialize()
@@ -15,16 +17,26 @@ void MazeMap::Initialize()
     /// 맵 초기상태 설정
     int temp[MapHeight][MapWidth] =
     {
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+        { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+        { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
     };
 
     // 멤버변수에 적용
@@ -47,22 +59,35 @@ void MazeMap::PrintMap(Actor& InPlayer)
             {
                 printf(ShapePlayer);    //printf("P ");와 같음                
             }
-            else if (Map[x][y] == MazeWall)
+            else if (Map[y][x] == MazeWall)
             {
                 printf(ShapeWall);
             }
-            else if (Map[x][y] == MazePath)
+            else if (Map[y][x] == MazePath)
             {
                 printf(ShapePath);
             }
-            else if (Map[x][y] == MazeStart)
+            else if (Map[y][x] == MazeStart)
             {
                 printf(ShapeStart);
             }
-            else if (Map[x][y] == MazeEnd)
+            else if (Map[y][x] == MazeEnd)
             {
                 printf(ShapeEnd);
             }
+            else if (Map[y][x] == Maze_Mon_Sime)
+            {
+                printf(ShapeMonster);
+            }
+            else if (Map[y][x] == Maze_Mon_Orc)
+            {
+                printf(ShapeMonster);
+            }
+            else if (Map[y][x] == Maze_Mon_Skeleton)
+            {
+                printf(ShapeMonster);
+            }
+
         }
         printf("\n");   // 줄바꿈 추가
     }
@@ -71,6 +96,11 @@ void MazeMap::PrintMap(Actor& InPlayer)
 MazeTile MazeMap::GetMazeData(int x, int y)
 {
     return static_cast<MazeTile>(Map[y][x]);
+}
+
+void MazeMap::SetMazeData(int x, int y, MazeTile Data)
+{
+    Map[y][x] = Data;
 }
 
 int MazeMap::GetAvailableMoves(Actor& InPlayer)

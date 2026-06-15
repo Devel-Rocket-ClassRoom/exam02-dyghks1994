@@ -2,15 +2,11 @@
 
 #include "Player.h"
 #include "MazeMap.h"
+#include "MenuInfo.h"
 
-enum class GameMenu
-{
-	NONE = 0,		// 기본값
-	NEW_GAME = 1,	// 게임시작
-	EXIT	= 2,	// 게임종료
-};
 
 enum MoveDirection;
+class Monster;
 class TextRPG
 {
 public:
@@ -24,18 +20,15 @@ public:
 
 	void MainGameLogic();	// 메인 로직
 
-	MoveDirection GetMoveInput(Player& InPlayer);
+	MoveDirection GetMoveInput(Player& InPlayer);	// 입력 처리
+	bool Battle(Player& InPlayer, Monster* InMonster) const;
+	BattleMenu SelectBattleMenu() const;
+
 
 private:
 	GameMenu Menu;
 
 	MazeMap* GameMap;
-
-
-
-
-
-
 
 
 };

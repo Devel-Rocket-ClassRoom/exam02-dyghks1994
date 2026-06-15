@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
-
+#include "Monster.h"
+#include "Slime.h"
 #include "TextRPG.h"
 
 TextRPG::TextRPG()
@@ -92,10 +93,8 @@ void TextRPG::MainGameLogic()
 	// 메인 루프
 	while (true)
 	{
-		system("cls");
-
 		/// 맵 출력
-		GameMap->Initialize();
+		system("cls");
 		GameMap->PrintMap(MyPlayer);
 
 
@@ -134,31 +133,38 @@ void TextRPG::MainGameLogic()
 		Position CurPos = MyPlayer.GetPosition();
 		int Target = GameMap->GetMazeData(CurPos.X, CurPos.Y);
 		
+		/// 몬스터 전투
+		Monster* Enemy = nullptr;
 		switch (Target)
 		{
-			// 몬스터 전투
 			case MazeTile::Maze_Mon_Sime:
 			{
-
+				Enemy = new Slime();
+				Battle(MyPlayer, Enemy);
 				break;
 			}
 
-			//case MazeTile::MazeWall:
-			//{
-			//	break;
-			//}
-			//
-			//case MazeTile::MazeWall:
-			//{
-			//	break;
-			//}
+			case MazeTile::Maze_Mon_Orc:
+			{
+				break;
+			}
+			
+			case MazeTile::Maze_Mon_Skeleton:
+			{
+				break;
+			}
 			
 			
 			// 상점 진입
 		}
 
+		if (Enemy)
+		{
+			delete Enemy;
+			Enemy = nullptr;
+		}
+
 	}
-	
 
 }
 
@@ -173,6 +179,7 @@ MoveDirection TextRPG::GetMoveInput(Player& InPlayer)
 	{
 		//printf("방향 입력 : ");
 		KeyInput = _getch();
+		
 
 		if ((KeyInput == 'w' || KeyInput == 'W') && (AvailableFlags & DirUp))
 		{
@@ -194,11 +201,92 @@ MoveDirection TextRPG::GetMoveInput(Player& InPlayer)
 			Result = DirRight;
 			break;
 		}
-
-
+		
 		//printf("잘못된 입력입니다. 이동 가능한 방향 중에서 선택하세요.\n");
 	}
 
 	return Result;
+}
+
+bool TextRPG::Battle(Player& InPlayer, Monster* InMonster) const
+{
+	bool Result = false;
+	int TurnCount = 1;
+
+	// 전투 로직
+	printf("[%s]이 나타났다!! 전투 시작!\n", InMonster->GetName().c_str());
+
+	while (InPlayer.IsAlive() && InMonster->IsAlive())
+	{
+		// 상태 출력
+		InPlayer.PrintInfo();
+		InMonster->PrintInfo();
+
+		// 턴 진행
+		printf("------------턴 %d------------\n", TurnCount);
+
+		// 유저 행동 입력
+		BattleMenu Menu = SelectBattleMenu();
+		
+		switch (Menu)
+		{
+			case BattleMenu::NORMAL_ATTACK:		// 기본 공격
+			{
+				InPlayer.NormalAttack(*InMonster);
+				//printf("일반공격\n");
+				break;
+			}
+
+			case BattleMenu::SKILL_ATTACK:		// 스킬 사용
+			{
+				break;
+			}
+		}
+
+		// 플레이어 공격에 몬스터가 살아있으면
+		// 몬스터 공격 진행
+		if (InMonster->IsAlive())
+		{
+			InMonster->Attack(InPlayer);
+		}
+
+		TurnCount++;
+	}
+	
+	// 플레이어 승리시 true 리턴
+	if (InPlayer.IsAlive())
+	{
+		Result = true;
+
+		// 경험치, 보상 획득
+		InPlayer.EarnRewards(InMonster);
+
+		// 현재 플레이어 위치 빈 구역으로 표시
+		GameMap->SetMazeData(InPlayer.GetPosition().X, InPlayer.GetPosition().Y, MazeTile::MazePath);
+
+	}
+
+	return Result;
+}
+
+BattleMenu TextRPG::SelectBattleMenu() const
+{
+	BattleMenu Menu = BattleMenu::NONE;
+
+	int MenuInput = 0;
+	do
+	{
+		printf("1. 기본공격 %t 2. 특수공격 %t 3. 포션사용-> ");
+
+		//MenuInput = _getch();
+		std::cin >> MenuInput;
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
+
+		Menu = static_cast<BattleMenu>(MenuInput);
+	} while (Menu <= BattleMenu::NONE
+		&& Menu > BattleMenu::BATTLE_MENU_COUNT);
+
+	return Menu;
 }
 

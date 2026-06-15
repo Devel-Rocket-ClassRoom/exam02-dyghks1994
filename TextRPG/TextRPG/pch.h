@@ -7,6 +7,9 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include <string>
+
 #include <vector>
-#include <array>
+#include <map>
+
 #include "Utils.h"

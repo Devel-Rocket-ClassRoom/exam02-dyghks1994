@@ -35,6 +35,8 @@ public:
     inline bool IsAlive() { return Health > 0; }
 
     virtual void Initialize();
+    virtual void Release();
+    virtual void PrintInfo() const;
     virtual int ApplyDamage(Actor& InActor);
     virtual int TakeDamage(int Damage);
 

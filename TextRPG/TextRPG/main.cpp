@@ -16,7 +16,7 @@ int main()
         printf("************************\n");
     }
 
-    Utils::GoToXY(2, 2);
+    GoToXY(2, 2);
     printf("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ\n");
     */
 
