@@ -1,44 +1,42 @@
 ﻿#include "pch.h"
-#include "Slime.h"
+#include "Skeleton.h"
 
-Slime::Slime()
+Skeleton::Skeleton()
 {
 	Initialize();
 }
 
-
-
-Slime::~Slime()
+Skeleton::~Skeleton()
 {
 	Release();
 }
 
-void Slime::Initialize()
+void Skeleton::Initialize()
 {
-	Name = "슬라임";
+	Name = "스켈레톤";
 
 	// Hp 리셋
-	HealthMax = SlimeHealthMax;
+	HealthMax = SkeletonHealthMax;
 	Health = HealthMax;
 
 	// 공격력 설정
-	AttackPowerMin = 2;
-	AttackPowerMax = 5;
+	AttackPowerMin = 15;
+	AttackPowerMax = 25;
 
 	// 크리티컬 설정
-	CriticalRate = 0.2f;
+	CriticalRate = 0.3f;
 	CriticalStrikeMultiplier = 1.3f;
 
 	// 보상 설정
-	Exp = 50;
-	Reward = 100;
+	Exp = 100;
+	Reward = 300;
 }
 
-void Slime::Release()
+void Skeleton::Release()
 {
 }
 
-void Slime::Attack(Actor& InTarget)
+void Skeleton::Attack(Actor& InTarget)
 {
 	/// 랜덤으로 일반공격 or 스킬 
 	float RandomNum = GetRandom();
@@ -55,15 +53,13 @@ void Slime::Attack(Actor& InTarget)
 	}
 }
 
-void Slime::Skill(Actor& InTarget)
+void Skeleton::Skill(Actor& InTarget)
 {
-	printf("스킬 사용\n");
 }
 
-int Slime::ApplyDamage(Actor& InActor)
+int Skeleton::ApplyDamage(Actor& InActor)
 {
 	int Damage = GetRandomRange(AttackPowerMin, AttackPowerMax);
 	InActor.TakeDamage(Damage);
 	return Damage;
 }
-

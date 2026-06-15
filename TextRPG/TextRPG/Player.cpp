@@ -65,6 +65,7 @@ void Player::Release()
 void Player::PrintInfo() const
 {
 	printf("[%s]\n", Name.c_str());
+	printf("Hp : %d/%d\n\n", Health, HealthMax.at(Level));
 }
 
 int Player::ApplyDamage(Actor& InActor)
@@ -130,6 +131,16 @@ void Player::LevelUp()
 void Player::Heal()
 {
 	// 인벤토리에 포션 있으면 사용
+	// 임시 코드
+
+	Health += 50;
+	if (Health > HealthMax.at(Level))
+	{
+		Health = HealthMax.at(Level);
+	}
+
+	printf("[포션을 사용 합니다. %d/%d Hp\n", Health, HealthMax.at(Level));
+
 }
 
 

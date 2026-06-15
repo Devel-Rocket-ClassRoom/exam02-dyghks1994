@@ -1,6 +1,9 @@
 ﻿#include "pch.h"
 #include "Monster.h"
 #include "Slime.h"
+#include "Orc.h"
+#include "Skeleton.h"
+#include "Player.h"
 #include "TextRPG.h"
 
 TextRPG::TextRPG()
@@ -63,9 +66,18 @@ void TextRPG::TextRPG_Run()
 
 void TextRPG::PrintTitle()
 {
-	printf("[타이틀]\n");
-	printf("1. 시작하기\n");
-	printf("2. 종료\n");
+	printf("======================================================================\n");
+	
+	printf("  _______ ______   _________   _____  _____   _____ \n");
+	printf(" |__   __|  ____|  \\  / /__   __| |  __ \\|  __ \\ / ____|\n");
+	printf("    | |  | |__      \\  /   | |    | |__) | |__) | |  __ \n");
+	printf("    | |  |  __|      \\/    | |    |  _  /|  ___/| | |_ |\n");
+	printf("    | |  | |____    /  \\   | |    | | \\ \\| |    | |__| |\n");
+	printf("    |_|  |______|  /_/\\_\\  |_|    |_|  \\_\\_|     \\_____|\n");
+	printf("                                                        \n\n");
+	printf("======================================================================\n\n");
+	
+	printf("%t [1]. 시작하기 %t  [2]. 종료\n");
 }
 
 GameMenu TextRPG::SelectMenu()
@@ -85,13 +97,16 @@ GameMenu TextRPG::SelectMenu()
 
 void TextRPG::MainGameLogic()
 {
+	// 출구도착  판별
+	bool IsGoal = false;
+
 	// 플레이어 초기 세팅
 	Player MyPlayer;
 	Position StartPos = { 1, 1 };	// 시작 위치
 	MyPlayer.SetPosition(StartPos);
 
 	// 메인 루프
-	while (true)
+	while (IsGoal == false || MyPlayer.IsAlive() == false)
 	{
 		/// 맵 출력
 		system("cls");
@@ -146,16 +161,24 @@ void TextRPG::MainGameLogic()
 
 			case MazeTile::Maze_Mon_Orc:
 			{
+				Enemy = new Orc();
+				Battle(MyPlayer, Enemy);
 				break;
 			}
 			
 			case MazeTile::Maze_Mon_Skeleton:
 			{
+				Enemy = new Skeleton();
+				Battle(MyPlayer, Enemy);
+				break;
+			}
+
+			case MazeTile::MazeEnd :
+			{
+				
 				break;
 			}
 			
-			
-			// 상점 진입
 		}
 
 		if (Enemy)
@@ -214,7 +237,7 @@ bool TextRPG::Battle(Player& InPlayer, Monster* InMonster) const
 	int TurnCount = 1;
 
 	// 전투 로직
-	printf("[%s]이 나타났다!! 전투 시작!\n", InMonster->GetName().c_str());
+	printf("[%s]이 나타났다!! \n", InMonster->GetName().c_str());
 
 	while (InPlayer.IsAlive() && InMonster->IsAlive())
 	{
@@ -239,6 +262,14 @@ bool TextRPG::Battle(Player& InPlayer, Monster* InMonster) const
 
 			case BattleMenu::SKILL_ATTACK:		// 스킬 사용
 			{
+				// 버그 컴파일 오류...
+				//InPlayer.Skill(*InMonster);
+				break;
+			}
+
+			case BattleMenu::POTION:
+			{
+				InPlayer.Heal();
 				break;
 			}
 		}
@@ -264,6 +295,12 @@ bool TextRPG::Battle(Player& InPlayer, Monster* InMonster) const
 		// 현재 플레이어 위치 빈 구역으로 표시
 		GameMap->SetMazeData(InPlayer.GetPosition().X, InPlayer.GetPosition().Y, MazeTile::MazePath);
 
+		// 상태 출력
+		InPlayer.PrintInfo();
+		InMonster->PrintInfo();
+
+		printf("%s를 물리쳤다!! (아무 버튼이나 눌러서 계속)\n", InMonster->GetName().c_str());
+		_getch();
 	}
 
 	return Result;

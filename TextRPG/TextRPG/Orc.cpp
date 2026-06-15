@@ -1,24 +1,22 @@
 ﻿#include "pch.h"
-#include "Slime.h"
+#include "Orc.h"
 
-Slime::Slime()
+Orc::Orc()
 {
 	Initialize();
 }
 
-
-
-Slime::~Slime()
+Orc::~Orc()
 {
 	Release();
 }
 
-void Slime::Initialize()
+void Orc::Initialize()
 {
-	Name = "슬라임";
+	Name = "오크";
 
 	// Hp 리셋
-	HealthMax = SlimeHealthMax;
+	HealthMax = OrcHealthMax;
 	Health = HealthMax;
 
 	// 공격력 설정
@@ -30,15 +28,15 @@ void Slime::Initialize()
 	CriticalStrikeMultiplier = 1.3f;
 
 	// 보상 설정
-	Exp = 50;
-	Reward = 100;
+	Exp = 80;
+	Reward = 200;
 }
 
-void Slime::Release()
+void Orc::Release()
 {
 }
 
-void Slime::Attack(Actor& InTarget)
+void Orc::Attack(Actor& InTarget)
 {
 	/// 랜덤으로 일반공격 or 스킬 
 	float RandomNum = GetRandom();
@@ -55,15 +53,13 @@ void Slime::Attack(Actor& InTarget)
 	}
 }
 
-void Slime::Skill(Actor& InTarget)
+void Orc::Skill(Actor& InTarget)
 {
-	printf("스킬 사용\n");
 }
 
-int Slime::ApplyDamage(Actor& InActor)
+int Orc::ApplyDamage(Actor& InActor)
 {
 	int Damage = GetRandomRange(AttackPowerMin, AttackPowerMax);
 	InActor.TakeDamage(Damage);
 	return Damage;
 }
-

@@ -128,12 +128,14 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="MazeMap.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Orc.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Potion.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="TextRPG.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -144,11 +146,12 @@
     <ClInclude Include="MazeMap.h" />
     <ClInclude Include="MenuInfo.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Orc.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Potion.h" />
-    <ClInclude Include="SingletonBase.h" />
+    <ClInclude Include="Skeleton.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="TextRPG.h" />
     <ClInclude Include="Utils.h" />
