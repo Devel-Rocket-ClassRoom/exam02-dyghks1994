@@ -57,6 +57,15 @@
     <ClCompile Include="Slime.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Orc.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Potion.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h">
@@ -64,9 +73,6 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>PCH</Filter>
-    </ClInclude>
-    <ClInclude Include="SingletonBase.h">
-      <Filter>Singleton</Filter>
     </ClInclude>
     <ClInclude Include="MazeMap.h">
       <Filter>Map</Filter>
@@ -88,6 +94,21 @@
     </ClInclude>
     <ClInclude Include="Slime.h">
       <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Orc.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Potion.h">
+      <Filter>Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
